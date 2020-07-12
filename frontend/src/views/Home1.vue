@@ -24,23 +24,25 @@
             <el-menu-item index="3">留言板</el-menu-item>
             <el-menu-item index="4"><a href="javascript:void(0)">关于我</a></el-menu-item>
 
-                <el-menu-item index="5"><a href="javascript:void(0);" @click="logoinFun(1)">登录&nbsp;</a>|<a
-                        href="javascript:void(0);"
-                        @click="logoinFun(0)">&nbsp;注册</a>
-                </el-menu-item>
-                <el-menu-item class="pcsearchinput">
-                    <el-input placeholder="搜索" icon="search">
-                    </el-input>
-                </el-menu-item>
+            <el-menu-item index="5"><a href="javascript:void(0);" @click="logoinFun(1)">登录&nbsp;</a>|<a
+                    href="javascript:void(0);"
+                    @click="logoinFun(0)">&nbsp;注册</a>
+            </el-menu-item>
+            <el-menu-item class="pcsearchinput">
+                <el-input placeholder="搜索" icon="search">
+                </el-input>
+            </el-menu-item>
 
 
         </el-menu>
 
-    </div>
 
+    </div>
 </template>
 
 <script>
+
+
     export default {
         data() {
             return {
@@ -54,21 +56,9 @@
             }
         }
     }
+
 </script>
-<style scoped>
-    .headBox li.is-active {
-        background: #48456C;
-        background: rgba(73, 69, 107, 0.7);
-    }
-    .headBox .pcsearchbox {
-	padding: 0;
-	max-width: 170px;
-	/*min-width: 30px;*/
-	height: 100%;
-	line-height: 38px;
-	position: absolute;
-	top: 0;
-	right: 0;
-	cursor: pointer;
-}
+
+<style>
+
 </style>
