@@ -105,25 +105,37 @@
                 </el-col>
             </el-row>
         </div>
-        <div class="headImgBox">
+        <div class="headImgBox"
+             :style="{backgroundImage:this.$store.state.themeObj.top_image?'url('+this.$store.state.themeObj.top_image+')':'url(static/img/headbg05.jpg)'}">
             <div class="scene">
                 <div><span id="luke"></span></div>
             </div>
             <div class="h-information">
                 <a href="#/Aboutme">
-                    <img alt="">
+                    <img :src="this.$store.state.themeObj.head_portrait?this.$store.state.themeObj.head_portrait:'static/img/tou.png'"
+                         alt="">
                 </a>
-                <!--                <h2 class="h-description">-->
-                <!--                    <a href="#/Aboutme">-->
-                <!--                        {{this.$store.state.themeObj.autograph?this.$store.state.themeObj.autograph:"Write the Code.-->
-                <!--                        Change the World."}}-->
-                <!--                    </a>-->
-                <!--                </h2>-->
+                <h2 class="h-description">
+                    <a href="#/Aboutme">
+                        {{this.$store.state.themeObj.autograph?this.$store.state.themeObj.autograph:"Write the Code.Change the World."}}
+                    </a>
+                </h2>
             </div>
         </div>
     </div>
 </template>
 <script>
+    import {
+        ArtClassData,
+        LoginOut,
+        navMenList,
+        changeTheme,
+        AboutMeData
+    } from '../utils/server.js'
+    import {
+        Typeit
+    } from '../utils/plug.js'
+
     export default {
         data() { //选项 / 数据
             return {
@@ -140,21 +152,22 @@
                 projectList: '' //项目列表
             }
         },
-        methods: {
-            // eslint-disable-next-line no-unused-vars
+
+        methods: { //事件处理器
             handleOpen(key, keyPath) { //分组菜单打开
                 // console.log(key, keyPath);
             },
-            // eslint-disable-next-line no-unused-vars
             handleClose(key, keyPath) { //分组菜单关闭
                 // console.log(key, keyPath);
             },
-            // eslint-disable-next-line no-unused-vars
-            handleSelect(key, keyPath) { //pc菜单选择
-                //    console.log(key, keyPath);
+            searchChangeFun(e) { //input change 事件
+                // console.log(e)
+                if (this.input == '') {
+                    this.$store.state.keywords = '';
+                    this.$router.push({path: '/'});
+                }
             },
             searchEnterFun: function (e) { //input 输入 enter
-                // eslint-disable-next-line no-unused-vars
                 var keyCode = window.event ? e.keyCode : e.which;
                 // console.log('CLICK', this.input, keyCode)
                 //  console.log('回车搜索',keyCode,e);
@@ -163,18 +176,136 @@
                     this.$router.push({path: '/Share?keywords=' + this.input});
                 }
             },
-            // eslint-disable-next-line no-unused-vars
-            searchChangeFun(e) { //input change 事件
-                console.log(e)
-
+            handleSelect(key, keyPath) { //pc菜单选择
+                //    console.log(key, keyPath);
+            },
+            logoinFun: function (msg) { //用户登录和注册跳转
+                // console.log(msg);
+                localStorage.setItem('logUrl', this.$route.fullPath);
+                // console.log(666,this.$router.currentRoute.fullPath);
+                if (msg == 0) {
+                    this.$router.push({
+                        path: '/Login?login=0'
+                    });
+                } else {
+                    this.$router.push({
+                        path: '/Login?login=1'
+                    });
+                }
             },
             // 用户退出登录
             userlogout: function () {
-                alert("退出登录")
+                var that = this;
+                this.$confirm('是否确认退出?', '退出提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    // console.log(that.$route.path);
+                    LoginOut(localStorage.getItem('accessToken'), function (result) {
+                        //    console.log(result);
+                        if (localStorage.getItem('userInfo')) {
+                            localStorage.removeItem('userInfo');
+                            that.haslogin = false;
+                            //    that.$router.replace({path:that.$route.fullPath});
+                            window.location.reload();
+                            that.$message({
+                                type: 'success',
+                                message: '退出成功!'
+                            });
+                        }
+                        if (that.$route.path == '/UserInfo') {
+                            that.$router.push({
+                                path: '/'
+                            });
+                        }
+                    })
+                }).catch(() => {
+                    //
+                });
+
             },
+            routeChange: function () {
+                var that = this;
+                that.pMenu = true
+                this.activeIndex = this.$route.path == '/' ? '/Home' : this.$route.path;
+                if (localStorage.getItem('userInfo')) { //存储用户信息
+                    that.haslogin = true;
+                    that.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+                    // console.log(that.userInfo);
+                } else {
+                    that.haslogin = false;
+                }
+                ArtClassData(function (msg) { //文章分类
+                    // console.log(msg);
+                    that.classListObj = msg;
+                })
+                navMenList(function (msg) { //实验室项目列表获取
+                    // console.log('实验室',msg);
+                    that.projectList = msg;
+                });
+                if ((this.$route.name == "Share" || this.$route.name == "Home") && this.$store.state.keywords) {
+                    this.input = this.$store.state.keywords;
+                } else {
+                    this.input = '';
+                    this.$store.state.keywords = '';
+                }
+            }
+        },
+        components: { //定义组件
+
+        },
+        watch: {
+            // 如果路由有变化，会再次执行该方法
+            '$route': 'routeChange'
+        },
+        created() { //生命周期函数
+            //判断当前页面是否被隐藏
+            var that = this;
+            var hiddenProperty = 'hidden' in document ? 'hidden' :
+                'webkitHidden' in document ? 'webkitHidden' :
+                    'mozHidden' in document ? 'mozHidden' :
+                        null;
+            var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+            var onVisibilityChange = function () {
+                if (document[hiddenProperty]) { //被隐藏
+                    document.title = '藏好啦(つд⊂)';
+                } else {
+                    document.title = '被发现啦(*´∇｀*)'; //当前窗口打开
+                    if (that.$route.path != '/DetailShare') {
+                        if (localStorage.getItem('userInfo')) {
+                            that.haslogin = true;
+                        } else {
+                            that.haslogin = false;
+                        }
+                    }
+                }
+            }
+            document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+            // console.log();
+            this.routeChange();
+            //设置主题
+            changeTheme(function (msg) {
+                // console.log(msg);
+                that.$store.state.themeObj = msg;
+
+                // console.log('主题',that.$store.state.themeObj );
+            });
+            //关于我的信息
+            AboutMeData(function (msg) {
+                // console.log('关于我',msg);
+                that.$store.state.aboutmeObj = msg
+            })
+        },
+        mounted() { //页面元素加载完成
+            // console.log('是否是慧慧',this.$store.state.themeObj.user_start);
+            var that = this;
+            var timer = setTimeout(function () {
+                Typeit(that.$store.state.themeObj.user_start, "#luke"); //打字机效果
+                clearTimeout(timer);
+            }, 500);
         }
     }
-
 </script>
 
 <style>

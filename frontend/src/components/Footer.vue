@@ -1,12 +1,13 @@
 <!-- 底部公用 -->
 <template>
+    <!-- Aimee的 -->
     <div v-if="this.$store.state.themeObj.user_start!=0" class="footBack footBackQian">
         <div class="footer-img"
              :style="{background:this.$store.state.themeObj.bottom_img?'url('+this.$store.state.themeObj.bottom_img+') no-repeat 50%':'url(static/img/footer01.png) no-repeat 50%'}">
         </div>
         <div class="fcontainer">
             <p>
-                博客已运行<span v-html='longTime'>{{longTime}}</span><span class="timeJump">(●'◡'●)ﾉ♥</span>
+                博客已萌萌哒运行<span v-html='longTime'>{{longTime}}</span><span class="timeJump">(●'◡'●)ﾉ♥</span>
             </p>
             <p>
                 托管于 <a href="https://github.com/Aimee1608/myblogvue" target="_blank">GitHub</a>. <a
@@ -61,17 +62,17 @@
         },
         methods: { //事件处理器
             runTime: function () {//运行倒计时
-                // var that = this;
-                // var oldTime = new Date('2016/06/01 00:00:00');
-                // var timer = setInterval(function () {
-                //     var nowTime = new Date();
-                //     var longTime = nowTime - oldTime;
-                //     var days = parseInt(longTime / 1000 / 60 / 60 / 24, 10); //计算剩余的天数
-                //     var hours = parseInt(longTime / 1000 / 60 / 60 % 24, 10); //计算剩余的小时
-                //     var minutes = parseInt(longTime / 1000 / 60 % 60, 10);//计算剩余的分钟
-                //     var seconds = parseInt(longTime / 1000 % 60, 10);//计算剩余的秒数
-                //     that.longTime = days + "天" + hours + "小时" + minutes + "分" + seconds + "秒";
-                // }, 1000)
+                var that = this;
+                var oldTime = new Date('2020/07/15 23:05:00');
+                var timer = setInterval(function () {
+                    var nowTime = new Date();
+                    var longTime = nowTime - oldTime;
+                    var days = parseInt(longTime / 1000 / 60 / 60 / 24, 10); //计算剩余的天数
+                    var hours = parseInt(longTime / 1000 / 60 / 60 % 24, 10); //计算剩余的小时
+                    var minutes = parseInt(longTime / 1000 / 60 % 60, 10);//计算剩余的分钟
+                    var seconds = parseInt(longTime / 1000 % 60, 10);//计算剩余的秒数
+                    that.longTime = days + "天" + hours + "小时" + minutes + "分" + seconds + "秒";
+                }, 1000)
             }
         },
         components: { //定义组件

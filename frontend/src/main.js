@@ -6,11 +6,13 @@ import router from './router'
 // import $ from 'jquery'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
+import store from './store'
 
 Vue.use(ElementUI);
 Vue.config.productionTip = false
 
 new Vue({
-  router,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
 }).$mount('#app')
