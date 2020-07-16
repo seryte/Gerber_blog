@@ -6,10 +6,12 @@ import router from './router'
 // import $ from 'jquery'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
+import './assets/css/style.less'
 import store from './store'
 
 Vue.use(ElementUI);
 Vue.config.productionTip = false
+
 
 new Vue({
     router,
