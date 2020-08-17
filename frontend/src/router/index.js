@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Home from "../pages/Home";
 
 
 Vue.use(VueRouter)
@@ -10,7 +11,8 @@ const routes = [
     {
         path: '/',
         name: 'Home',
-        component: resolve => require(['../pages/Home.vue'], resolve),
+        component: Home
+        // component: resolve => require(['../pages/Home.vue'], resolve),
     },
     // {
     //     path: '/login',
