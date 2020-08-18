@@ -3,7 +3,7 @@
     <div class="rightlistBox">
         <section >
             <div class="r1-head">
-                <img :src="this.$store.state.themeObj.center_smailimg?this.$store.state.themeObj.center_smailimg:'static/img/headtou02.jpg'" alt="">
+                <img :src="this.$store.state.themeObj.center_smailimg?this.$store.state.themeObj.center_smailimg:this.rightAvatar" alt="">
                 <h1 v-if="this.$store.state.themeObj.user_start!=0">
                     <span>女王</span>Aimee
                 </h1>
@@ -90,6 +90,7 @@
 
 <script>
 import {ShowBrowseCount,ShowArtCommentCount,showLikeData,GetLike} from '../utils/server.js'
+import rightAvatar from "../../static/img/headtou02.jpg"
     export default {
         data() { //选项 / 数据
             return {
@@ -101,6 +102,7 @@ import {ShowBrowseCount,ShowArtCommentCount,showLikeData,GetLike} from '../utils
                 artCommentList:'',//评论量最多
                 likeNum:0,//do you like me 点击量
                 initLikeNum:0,//初始化喜欢数量
+                rightAvatar: rightAvatar,
                 catchMeObj:{//抓住我 个人信息
                     Qinlh:{
                         git:'https://gitee.com/qinlh',
@@ -151,7 +153,7 @@ import {ShowBrowseCount,ShowArtCommentCount,showLikeData,GetLike} from '../utils
                           that.going = false;
                         clearInterval(timer);
                         timer = null;
-                      };
+                      }
                 },30);
             },
         },

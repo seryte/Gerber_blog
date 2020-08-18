@@ -3,7 +3,7 @@
     <div>
         <div class="container">
             <h1 class="loginTitle">
-                <a href="#/">?"Aimee 的博客":"Qinlh 的博客"</a>
+                <a href="#/">{{this.$store.state.themeObj.user_start!=0?"Aimee 的博客":"Qinlh 的博客"}}</a>
             </h1>
             <!-- 登录注册 -->
             <div v-show="!err2005" class="">
@@ -109,7 +109,7 @@
                         type="error"
                         show-icon  :closable="false">
                     </el-alert>
-                    <div class="lr-btn tcolors-bg"  element-loading-text="提交中">注册</div>
+                    <div class="lr-btn tcolors-bg" @click="newRegister" v-loading.fullscreen.lock="fullscreenLoading"  element-loading-text="提交中">注册</div>
                 </div>
             </div>
             <!-- 注册进度状态 -->
@@ -126,10 +126,10 @@
                     <p>请您在24小时内登录邮箱，按邮件中的提示完成账号激活操作</p>
                 </div>
                 <div v-show="urlstate=='urlInvalid'" class="sucContent">
-                    账号已激活，现在去登录 &nbsp;&nbsp;<span class="tcolors-bg lastbtn">登录</span>
+                    账号已激活，现在去登录 &nbsp;&nbsp;<span class="tcolors-bg lastbtn" @click="goLogin">登录</span>
                 </div>
                 <div v-show="urlstate=='urlErr'" class="sucContent">
-                    OwO邮箱激活地址已超时，验证失败，请重新注册 &nbsp;&nbsp;<span class="tcolors-bg lastbtn">注册</span>
+                    OwO邮箱激活地址已超时，验证失败，请重新注册 &nbsp;&nbsp;<span class="tcolors-bg lastbtn" @click="goRegister">注册</span>
                 </div>
             </div>
         </div>
@@ -137,7 +137,7 @@
 </template>
 
 <script>
-// import {getRegister,UserLogin} from '../utils/server.js'
+import {getRegister,UserLogin} from '../utils/server.js'
     export default {
         name: 'Login',
         data() { //选项 / 数据
@@ -166,7 +166,6 @@
                 urlstate: 0,//重新注册
             }
         },
-        /*
         methods: { //事件处理器
             routeChange:function(){
                 var that = this;
@@ -296,7 +295,7 @@
                 this.$router.push({path:'/Login?login=0'});
             }
 
-        },*/
+        },
         components: { //定义组件
 
         },
@@ -305,6 +304,8 @@
            '$route':'routeChange'
          },
         created() { //生命周期函数
+            var that = this;
+            that.routeChange();
         }
     }
 </script>

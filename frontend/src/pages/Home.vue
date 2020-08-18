@@ -4,10 +4,10 @@
         <div class="container">
             <el-row :gutter="30">
                 <el-col :sm="24" :md="16" style="transition:all .5s ease-out;margin-bottom:30px;">
-<!--                    <wbc-sharelist></wbc-sharelist>-->
+                    <wbc-sharelist></wbc-sharelist>
                 </el-col>
                 <el-col :sm="24" :md="8">
-<!--                    <wbc-rightlist></wbc-rightlist>-->
+                    <wbc-rightlist></wbc-rightlist>
                 </el-col>
             </el-row>
         </div>
@@ -32,8 +32,8 @@
         components: {
             'wbc-nav': header,
             'wbc-footer': footer,
-            'wbc-sharelist': temRightlist,
-            'wbc-rightlist': temSharelist,
+            'wbc-sharelist': temSharelist,
+            'wbc-rightlist': temRightlist,
         },
         created() { //生命周期函数
 
