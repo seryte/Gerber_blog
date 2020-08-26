@@ -16,9 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from blog_interface.user_views.views import joint_debugging
+from blog_interface.user_views.views import register_user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/login/getRegister', joint_debugging),
+    path('api/login/getRegister', register_user),
 ]

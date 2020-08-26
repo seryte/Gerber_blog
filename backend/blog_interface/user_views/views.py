@@ -9,8 +9,4 @@ from django.shortcuts import render
 
 def register_user(request):
     body = request.body
-    data = json.loads(body, encoding='utf-8')
-    print(data)
-    # user_name = request.get("username", "")
-    # user_email = request.get()
-    return HttpResponse(f"注册mock!{data}")
+    return HttpResponse(f"注册mock!{body}")

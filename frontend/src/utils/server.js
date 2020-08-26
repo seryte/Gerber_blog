@@ -3,13 +3,13 @@ import axios from 'axios'
 //公共路径
 // let portUrl = "http://www.mangoya.cn/port/";
 // let portUrl = "http://"+window.location.host+"/port/";
-let portUrl = "http://127.0.0.1:8000/api/";
+let portUrl = "http://192.168.123.183:8001/api/"; // home env n1 docker
 // axios.defaults.withCredentials = true; //代表每次请求后端时，带上cookie
 
 //用户注册
 const getRegister = (username,password,email,callback) =>{
     let url = portUrl+'login/getRegister?username='+username+'&email='+email+'&password='+password;
-    axios.get(url).then(num => {
+    axios.post(url).then(num => {
             callback && callback(num.data)
     })
 }
