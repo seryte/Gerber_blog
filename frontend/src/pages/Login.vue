@@ -138,6 +138,7 @@
 
 <script>
 import {getRegister,UserLogin} from '../utils/server.js'
+import {register} from "../utils/user";
     export default {
         name: 'Login',
         data() { //选项 / 数据
@@ -266,8 +267,10 @@ import {getRegister,UserLogin} from '../utils/server.js'
                 }
                 if(!that.nusernameErr&&!that.nemailErr&&!that.npasswordErr){
                     that.fullscreenLoading = true;
-                    getRegister(that.nusername,that.npassword,that.nemail,function(msg){
-                        if(msg.code==1010){//注册成功
+                    // getRegister(that.nusername,that.npassword,that.nemail,function(msg){
+                    register(that.nusername,that.npassword,that.nemail,function(msg){
+                        if(msg.success==true){//注册成功
+                            alert("注册成功")
                             var timer = setTimeout(function(){//注册中
                                 that.fullscreenLoading = false;
                                 that.err2005 = true;

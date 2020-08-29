@@ -1,0 +1,206 @@
+2020-08-29 22:45:08,596 ERROR    D:\code\python_test\Gerber_blog\backend\blog_interface\user_views\views.py[line:37] {"email": [{"message": "Ensure this value has at most 20 characters (it has 24).", "code": "max_length"}]}
+2020-08-29 22:45:08,649 ERROR    D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\utils\log.py[line:228] Internal Server Error: /api/user/register
+Traceback (most recent call last):
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "D:\code\python_test\Gerber_blog\backend\blog_interface\user_views\views.py", line 38, in post
+    raise MyException()
+blog_interface.Exception.my_exception.MyException: ²ÎÊý´íÎó
+2020-08-29 22:45:08,650 ERROR    D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\servers\basehttp.py[line:154] "POST /api/user/register HTTP/1.0" 500 80162
+2020-08-29 22:45:58,272 INFO     D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\utils\autoreload.py[line:217] D:\code\python_test\Gerber_blog\backend\blog_interface\Form\user.py changed, reloading.
+2020-08-29 22:45:59,172 INFO     D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\utils\autoreload.py[line:597] Watching for file changes with StatReloader
+2020-08-29 22:46:04,021 INFO     D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\servers\basehttp.py[line:154] "POST /api/user/register HTTP/1.0" 200 44
+2020-08-29 23:11:04,535 ERROR    D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\utils\log.py[line:228] Internal Server Error: /api/user/register
+Traceback (most recent call last):
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: auth_user.username
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "D:\code\python_test\Gerber_blog\backend\blog_interface\user_views\views.py", line 29, in post
+    email=form.cleaned_data['email'])
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\contrib\auth\models.py", line 151, in create_user
+    return self._create_user(username, email, password, **extra_fields)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\contrib\auth\models.py", line 145, in _create_user
+    user.save(using=self._db)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\contrib\auth\base_user.py", line 66, in save
+    super().save(*args, **kwargs)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\base.py", line 741, in save
+    force_update=force_update, update_fields=update_fields)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\base.py", line 779, in save_base
+    force_update, using, update_fields,
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\base.py", line 870, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\base.py", line 908, in _do_insert
+    using=using, raw=raw)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\query.py", line 1186, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\sql\compiler.py", line 1375, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\utils.py", line 99, in execute
+    return super().execute(sql, params)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: auth_user.username
+2020-08-29 23:11:04,546 ERROR    D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\servers\basehttp.py[line:154] "POST /api/user/register HTTP/1.0" 500 179403
+2020-08-29 23:12:59,502 ERROR    D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\utils\log.py[line:228] Internal Server Error: /api/user/register
+Traceback (most recent call last):
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: auth_user.username
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "D:\code\python_test\Gerber_blog\backend\blog_interface\user_views\views.py", line 29, in post
+    email=form.cleaned_data['email'])
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\contrib\auth\models.py", line 151, in create_user
+    return self._create_user(username, email, password, **extra_fields)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\contrib\auth\models.py", line 145, in _create_user
+    user.save(using=self._db)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\contrib\auth\base_user.py", line 66, in save
+    super().save(*args, **kwargs)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\base.py", line 741, in save
+    force_update=force_update, update_fields=update_fields)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\base.py", line 779, in save_base
+    force_update, using, update_fields,
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\base.py", line 870, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\base.py", line 908, in _do_insert
+    using=using, raw=raw)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\query.py", line 1186, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\sql\compiler.py", line 1375, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\utils.py", line 99, in execute
+    return super().execute(sql, params)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: auth_user.username
+2020-08-29 23:12:59,506 ERROR    D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\servers\basehttp.py[line:154] "POST /api/user/register HTTP/1.0" 500 179404
+2020-08-29 23:28:16,298 WARNING  D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\utils\log.py[line:228] Not Found: /api/api/user/register/
+2020-08-29 23:28:16,298 WARNING  D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\servers\basehttp.py[line:154] "POST /api/api/user/register/ HTTP/1.0" 404 2129
+2020-08-29 23:29:54,306 WARNING  D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\utils\log.py[line:228] Not Found: /api/user/register/
+2020-08-29 23:29:54,306 WARNING  D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\servers\basehttp.py[line:154] "POST /api/user/register/ HTTP/1.0" 404 2117
+2020-08-29 23:31:24,597 WARNING  D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\utils\log.py[line:228] Not Found: /api/user/register/
+2020-08-29 23:31:24,598 WARNING  D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\servers\basehttp.py[line:154] "POST /api/user/register/ HTTP/1.0" 404 2117
+2020-08-29 23:31:33,814 ERROR    D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\utils\log.py[line:228] Internal Server Error: /api/user/register
+Traceback (most recent call last):
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: auth_user.username
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "D:\code\python_test\Gerber_blog\backend\blog_interface\user_views\views.py", line 29, in post
+    email=form.cleaned_data['email'])
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\contrib\auth\models.py", line 151, in create_user
+    return self._create_user(username, email, password, **extra_fields)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\contrib\auth\models.py", line 145, in _create_user
+    user.save(using=self._db)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\contrib\auth\base_user.py", line 66, in save
+    super().save(*args, **kwargs)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\base.py", line 741, in save
+    force_update=force_update, update_fields=update_fields)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\base.py", line 779, in save_base
+    force_update, using, update_fields,
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\base.py", line 870, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\base.py", line 908, in _do_insert
+    using=using, raw=raw)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\query.py", line 1186, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\models\sql\compiler.py", line 1375, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\utils.py", line 99, in execute
+    return super().execute(sql, params)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: auth_user.username
+2020-08-29 23:31:33,815 ERROR    D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\servers\basehttp.py[line:154] "POST /api/user/register HTTP/1.0" 500 179404
+2020-08-29 23:31:47,569 INFO     D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\utils\autoreload.py[line:217] D:\code\python_test\Gerber_blog\backend\gerber_blog\urls.py changed, reloading.
+2020-08-29 23:31:48,441 INFO     D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\utils\autoreload.py[line:597] Watching for file changes with StatReloader
+2020-08-29 23:32:08,136 INFO     D:\code\python_test\Gerber_blog\blog_env\lib\site-packages\django\core\servers\basehttp.py[line:154] "POST /api/user/register/ HTTP/1.0" 200 44

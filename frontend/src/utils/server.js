@@ -8,7 +8,7 @@ let portUrl = "http://192.168.123.183:8001/api/"; // home env n1 docker
 
 //用户注册
 const getRegister = (username,password,email,callback) =>{
-    let url = portUrl+'login/getRegister?username='+username+'&email='+email+'&password='+password;
+    let url = portUrl+'user/register?username='+username+'&email='+email+'&password='+password;
     axios.post(url).then(num => {
             callback && callback(num.data)
     })
