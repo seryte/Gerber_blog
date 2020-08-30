@@ -3,7 +3,7 @@
     <div>
         <div class="container">
             <h1 class="loginTitle">
-                <a href="#/">{{this.$store.state.themeObj.user_start!=0?"Aimee 的博客":"Qinlh 的博客"}}</a>
+                <a href="#/">{{this.$store.state.themeObj.user_start!=0?"新手 的博客":"Qinlh 的博客"}}</a>
             </h1>
             <!-- 登录注册 -->
             <div v-show="!err2005" class="">
@@ -268,24 +268,21 @@ import {register} from "../utils/user";
                 if(!that.nusernameErr&&!that.nemailErr&&!that.npasswordErr){
                     that.fullscreenLoading = true;
                     // getRegister(that.nusername,that.npassword,that.nemail,function(msg){
-                    register(that.nusername,that.npassword,that.nemail,function(msg){
-                        if(msg.success==true){//注册成功
-                            alert("注册成功")
-                            var timer = setTimeout(function(){//注册中
+                    register(that.nusername,that.npassword,that.nemail).then(data=>{
+                        let status = data.data.success
+                        if (status) {
+                             var timer = setTimeout(function(){//注册中
                                 that.fullscreenLoading = false;
                                 that.err2005 = true;
                                 that.step = 1;
                                 clearTimeout(timer);
                             },3000)
-                        }else if(msg.code==2002){//该邮箱已注册
-                            that.fullscreenLoading = false;
-                            that.registerErr = true;
-                            that.registerTitle = '该邮箱已注册,可直接登录';
-                        }else{
-                            that.fullscreenLoading = false;
+                        } else {
+                             that.fullscreenLoading = false;
                             that.registerErr = true;
                             that.registerTitle = '注册失败';
                         }
+
                     })
                 }
             },
