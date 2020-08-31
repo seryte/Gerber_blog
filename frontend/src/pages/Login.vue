@@ -11,7 +11,7 @@
                     <div class="lr-title">
                         <h1>登录</h1>
                         <p>
-                            新用户<a href="#/Login?login=0" class="tcolors">注册</a>
+                            新用户<a href="/Login?login=0" class="tcolors">注册</a>
                         </p>
                     </div>
                     <el-alert
@@ -55,7 +55,7 @@
                     <div class="lr-title">
                         <h1>注册</h1>
                         <p>
-                            已有账号<a href="#/Login?login=1" class="tcolors">登录</a>
+                            已有账号<a href="/Login?login=1" class="tcolors">登录</a>
                         </p>
                     </div>
                     <el-alert
@@ -113,32 +113,32 @@
                 </div>
             </div>
             <!-- 注册进度状态 -->
-            <div v-show="err2005" class="registerSuc">
-                <div class="sucIcon">
-                    <el-steps :space="100" :active="step" finish-status="success">
-                      <el-step title="注册"></el-step>
-                      <el-step title="验证"></el-step>
-                      <el-step title="登录"></el-step>
-                    </el-steps>
-                </div>
-                <div v-show="urlstate==0" class="sucContent">
-                    账号激活链接已发送至您的邮箱：{{nemail}}
-                    <p>请您在24小时内登录邮箱，按邮件中的提示完成账号激活操作</p>
-                </div>
-                <div v-show="urlstate=='urlInvalid'" class="sucContent">
-                    账号已激活，现在去登录 &nbsp;&nbsp;<span class="tcolors-bg lastbtn" @click="goLogin">登录</span>
-                </div>
-                <div v-show="urlstate=='urlErr'" class="sucContent">
-                    OwO邮箱激活地址已超时，验证失败，请重新注册 &nbsp;&nbsp;<span class="tcolors-bg lastbtn" @click="goRegister">注册</span>
-                </div>
-            </div>
+<!--            <div v-show="err2005" class="registerSuc">-->
+<!--                <div class="sucIcon">-->
+<!--                    <el-steps :space="100" :active="step" finish-status="success">-->
+<!--                      <el-step title="注册"></el-step>-->
+<!--                      <el-step title="验证"></el-step>-->
+<!--                      <el-step title="登录"></el-step>-->
+<!--                    </el-steps>-->
+<!--                </div>-->
+<!--                <div v-show="urlstate==0" class="sucContent">-->
+<!--                    账号激活链接已发送至您的邮箱：{{nemail}}-->
+<!--                    <p>请您在24小时内登录邮箱，按邮件中的提示完成账号激活操作</p>-->
+<!--                </div>-->
+<!--                <div v-show="urlstate=='urlInvalid'" class="sucContent">-->
+<!--                    账号已激活，现在去登录 &nbsp;&nbsp;<span class="tcolors-bg lastbtn" @click="goLogin">登录</span>-->
+<!--                </div>-->
+<!--                <div v-show="urlstate=='urlErr'" class="sucContent">-->
+<!--                    OwO邮箱激活地址已超时，验证失败，请重新注册 &nbsp;&nbsp;<span class="tcolors-bg lastbtn" @click="goRegister">注册</span>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
 </template>
 
 <script>
 import {getRegister,UserLogin} from '../utils/server.js'
-import {register} from "../utils/user";
+import {register, login} from "../utils/user";
     export default {
         name: 'Login',
         data() { //选项 / 数据
@@ -206,31 +206,16 @@ import {register} from "../utils/user";
                     that.passwordErr = true;
                 }
                 if(!that.emailErr&&!that.passwordErr){
-                    UserLogin(that.email,that.password,function(msg){
-                        // console.log(msg);
-                        if(msg.code==1010){//登录成功
-                             localStorage.setItem('userInfo',JSON.stringify(msg.data));
-                             localStorage.setItem('accessToken',msg.token);
-                             if(localStorage.getItem('logUrl')){
-                                 that.$router.push({path:localStorage.getItem('logUrl')});
-                             }else{
-                                 that.$router.push({path:'/'});
-                             }
-
-                        }else if(msg.code==2008||msg.code==2007){//邮箱或密码错误
-                            that.loginErr = true;
-                            that.loginTitle = '邮箱或密码错误';
-                        }else if(msg.code==2009){//邮箱注册码未激活
-                            that.loginErr = true;
-                            that.loginTitle = '该邮箱注册码未激活，请前往邮箱激活';
-                        }else if(msg.code==2005){//邮箱注册码未激活已超时
-                            // that.loginErr = true;
-                            that.err2005 = true;
-                            // that.loginTitle = '该邮箱激活地址已超时，已发送新链接，请前往邮箱激活';
-                        }else{
-                            that.loginErr = true;
+                    // UserLogin(that.email,that.password,function(msg){
+                    login(that.email,that.password).then(data=>{
+                        let status = data.data.success
+                        if (status) {
+                            that.$router.push({path:'/'});
+                        } else {
+                           that.loginErr = true;
                             that.loginTitle = '登录失败';
                         }
+
                     })
                 }
             },
@@ -278,7 +263,7 @@ import {register} from "../utils/user";
                                 clearTimeout(timer);
                             },3000)
                         } else {
-                             that.fullscreenLoading = false;
+                            that.fullscreenLoading = false;
                             that.registerErr = true;
                             that.registerTitle = '注册失败';
                         }
