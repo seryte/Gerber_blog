@@ -36,5 +36,5 @@ class UserForm(forms.Form):
 
     email = forms.CharField(max_length=30,
                             min_length=3,
-                            required=True,
+                            required=False,
                             error_messages={'required': "邮箱不能为空"})

@@ -21,13 +21,13 @@
                         show-icon  :closable="false">
                     </el-alert>
                     <el-input
-                        type="email"
-                        placeholder="邮箱"
-                        v-model="email">
+                         type="text"
+                        placeholder="用户名"
+                        v-model="nusername">
                     </el-input>
                     <el-alert
-                        v-show="emailErr"
-                        title="请输入邮箱"
+                        v-show="nusernameErr"
+                        title="用户名错误"
                         type="error"
                         show-icon  :closable="false">
                     </el-alert>
@@ -195,19 +195,18 @@ import {register, login} from "../utils/user";
                 var that = this;
                 var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/ ;
                 var preg = /^(\w){6,12}$/;
-                if(reg.test(that.email)){
-                    that.emailErr = false;
+                if(that.nusername){
+                    that.nusernameErr = false;
                 }else{
-                    that.emailErr = true;
+                    that.nusernameErr = true;
                 }
                 if(that.password&&preg.test(that.password)){
                     that.passwordErr = false;
                 }else{
                     that.passwordErr = true;
                 }
-                if(!that.emailErr&&!that.passwordErr){
-                    // UserLogin(that.email,that.password,function(msg){
-                    login(that.email,that.password).then(data=>{
+                if(!that.nusernameErr&&!that.passwordErr){
+                    login(that.nusername,that.password).then(data=>{
                         let status = data.data.success
                         if (status) {
                             that.$router.push({path:'/'});

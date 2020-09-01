@@ -34,11 +34,13 @@ def response_json(status, message, data):
     return JsonResponse(result)
 
 
-def response_success(data=None):
+def response_success(message, data=None):
     if data is None:
         data = {}
-    return response_json(True, "", data)
+    return response_json(True, message, data)
 
 
-def response_failed(message="参数错误"):
-    return response_json(False, message, {})
+def response_failed(message="参数错误", data=None):
+    if data is None:
+        data = {}
+    return response_json(False, message, data)
