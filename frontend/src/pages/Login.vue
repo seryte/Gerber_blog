@@ -11,7 +11,7 @@
                     <div class="lr-title">
                         <h1>登录</h1>
                         <p>
-                            新用户<a href="/Login?login=0" class="tcolors">注册</a>
+                            新用户<a href="#/Login?login=0" class="tcolors">注册</a>
                         </p>
                     </div>
                     <el-alert
@@ -55,7 +55,7 @@
                     <div class="lr-title">
                         <h1>注册</h1>
                         <p>
-                            已有账号<a href="/Login?login=1" class="tcolors">登录</a>
+                            已有账号<a href="#/Login?login=1" class="tcolors">登录</a>
                         </p>
                     </div>
                     <el-alert

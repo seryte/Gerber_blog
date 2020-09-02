@@ -7,18 +7,23 @@ import Login from "../pages/Login";
 Vue.use(VueRouter)
 
 
-
 const routes = [
     {
         path: '/',
         name: 'Home',
-        component: Home
+        component: Home,
+        meta: {
+            auth: true
+        },
         // component: resolve => require(['../pages/Home.vue'], resolve),
     },
     {
         path: '/login',
         name: 'Login',
-        component: Login
+        component: Login,
+        meta: {
+            auth: false
+        },
     },
     {
         path: '/about',
