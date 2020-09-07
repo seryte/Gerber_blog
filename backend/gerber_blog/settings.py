@@ -121,10 +121,10 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'standard': {
-            'format': '%(asctime)s %(levelname)-8s %(message)s'
+            'format': '[%(asctime)s] %(levelname)-8s %(message)s'
         },
         'detail': {
-            'format': '%(asctime)s %(levelname)-8s %(pathname)s[line:%(lineno)d] %(message)s'
+            'format': '[%(asctime)s] %(levelname)-8s [%(name)s.%(funcName)s:line:%(lineno)d] %(message)s'
         },
     },
     'handlers': {
@@ -157,7 +157,7 @@ LOGGING = {
             'propagate': True,
         },
         # 自定义模块日志
-        'user.view': {
+        'views.user.view': {
             'handlers': ['console', 'file'],
             'level': 'INFO',
             'propagate': True,

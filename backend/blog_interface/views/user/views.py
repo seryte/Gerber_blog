@@ -11,7 +11,7 @@ from blog_interface.Exception.my_exception import MyException
 from blog_interface.Form.user import UserForm
 from blog_interface.common.common import response_failed, response_success
 
-log = logging.getLogger('user.view')
+log = logging.getLogger('views.user.view')
 
 
 class UserViews(View):
@@ -46,6 +46,7 @@ class UserLogin(View):
 
         user = authenticate(username=user_form.cleaned_data['username'], password=user_form.cleaned_data['password'])
         if not user:
+            log.error("login failed !!!")
             return response_failed(message="登录失败")
         else:
             login(request, user)
