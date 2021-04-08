@@ -1,4 +1,4 @@
-#!/Users/xukeze/Code/Gerber_blog/backend/venv/bin/python
+#!/Users/Code/Gerber_blog/backend/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
